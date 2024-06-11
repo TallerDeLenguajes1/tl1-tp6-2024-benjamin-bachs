@@ -1,38 +1,27 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-Console.WriteLine("CALCULADORA V1\n");
-for (int i = 0; i < 10000; i++)
-{
-    Console.WriteLine("Elija la opcion deseada:");
-    Console.WriteLine("1. Suma");
-    Console.WriteLine("2. Diferencia");
-    Console.WriteLine("3. Producto");
-    Console.WriteLine("4. Cociente");
-    Console.WriteLine("Ingrese otra cosa para salir\n");
-    Console.Write("Opcion: ");
-    String opcion;
-    opcion = Console.ReadLine();
-    int a = 0, b = 0;
-        switch (opcion)
-        {
-            case "1":
-                if(tomarNumeros(ref a, ref b)) Console.WriteLine($"\nResultado: {a+b}\n");
-                continue;
-            case "2":
-                if(tomarNumeros(ref a, ref b)) Console.WriteLine($"\nResultado: {a-b}\n");
-                continue;
-            case "3":
-                if(tomarNumeros(ref a, ref b)) Console.WriteLine($"\nResultado: {a*b}\n");
-                continue;
-            case "4":
-                if(tomarNumeros(ref a, ref b) && b != 0) Console.WriteLine($"Resultado: {a/b}\n");
-                else if(b!=0) Console.WriteLine("No se puede dividir por 0\n");
-                continue;
-            default:
-                break;
-        }
-        break;
+Console.WriteLine("CALCULADORA V2\n");
+Console.Write("Ingrese un numero:");
+string n = Console.ReadLine();
+float a = 0;
+if (float.TryParse(n, out a)){
+    Console.WriteLine($"Valor absoluto: {Math.Abs(a)}");
+    Console.WriteLine($"Cuadrado: {Math.Pow(a, 2)}");
+    Console.WriteLine($"Raiz cuadrada: {Math.Sqrt(a)}");
+    Console.WriteLine($"Seno: {Math.Sin(a)}");
+    Console.WriteLine($"Coseno: {Math.Cos(a)}");
+    Console.WriteLine($"Parte entera: {(int)a}");
+} else {
+    Console.WriteLine("No fue ingresado un numero valido");
 }
+int b=0, c=0;
+Console.Write("Maximo y minimo:");
+if(tomarNumeros(ref b, ref c)){
+    Console.WriteLine($"Maximo: {Math.Max(a, b)}");
+    Console.WriteLine($"Minimo: {Math.Min(a, b)}");
+}
+
+
 
 static bool tomarNumeros(ref int a, ref int b){
     Console.WriteLine("\nIngrese los dos numeros a operar:");
@@ -41,7 +30,7 @@ static bool tomarNumeros(ref int a, ref int b){
                 bString = Console.ReadLine();
                 if(int.TryParse(aString, out a) && int.TryParse(bString, out b )) return true;
                 else {
-                    Console.WriteLine("\nDebe ingresar numeros\n");
+                    Console.WriteLine("\nNo fueron ingresados numeros validos\n");
                     return false;
                 }
 }
